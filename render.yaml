@@ -1,3 +1,4 @@
+
 services:
   - type: web
     name: roxiler-store-rating-backend
@@ -22,5 +23,4 @@ services:
 databases:
   - name: roxiler-store-db
     databaseName: store_rating
-    user: postgres
     plan: free
