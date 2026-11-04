@@ -1,4 +1,4 @@
-# 🏪 StoreRate — Full Stack Store Rating Web Application
+# 🏪 StoreRate - Full Stack Store Rating Web Application
 
 > Built for the **Roxiler Systems Full Stack Developer Intern (FSDI) Assessment**.
 

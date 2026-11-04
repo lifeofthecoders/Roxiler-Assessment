@@ -665,16 +665,13 @@ const LandingPage = () => {
           <p style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '600px', margin: '0 auto 32px' }}>
             Join thousands of shoppers making local retail better every day with honest feedback.
           </p>
-          <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/signup">
-              <Button variant="primary" size="lg" style={{ borderRadius: 'var(--radius-full)' }}>
-                Create Free Account <FiArrowRight size={16} />
-              </Button>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Link to="/signup" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', minHeight: '52px', padding: '0 30px', borderRadius: '999px', background: 'linear-gradient(135deg, #6726fe 0%, #8b5cf6 100%)', color: '#ffffff', fontSize: '15px', fontWeight: 700, textDecoration: 'none', border: '1px solid transparent', boxShadow: '0 8px 20px rgba(103, 38, 254, 0.25)', transition: 'all 0.25s ease', whiteSpace: 'nowrap' }}>
+              Create Free Account <FiArrowRight size={17} />
             </Link>
-            <Link to="/login">
-              <Button variant="secondary" size="lg" style={{ borderRadius: 'var(--radius-full)' }}>
-                Sign In to Your Dashboard
-              </Button>
+
+            <Link to="/login" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '52px', padding: '0 30px', borderRadius: '999px', background: 'rgba(255, 255, 255, 0.85)', color: '#1e293b', fontSize: '15px', fontWeight: 700, textDecoration: 'none', border: '1px solid rgba(148, 163, 184, 0.35)', boxShadow: '0 6px 18px rgba(15, 23, 42, 0.07)', transition: 'all 0.25s ease', whiteSpace: 'nowrap', }}>
+              Sign In to Your Dashboard
             </Link>
           </div>
         </GlassCard>

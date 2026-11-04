@@ -131,7 +131,7 @@ const Footer = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <FiExternalLink size={15} color="#ff6b35" />
                 <a
-                  href="https://github.com/mdyusuf0/Roxiler-Assessment"
+                  href="https://github.com/lifeofthecoders/Roxiler-Assessment"
                   target="_blank"
                   rel="noreferrer"
                   style={{ color: 'var(--primary)', fontWeight: 600 }}
@@ -163,7 +163,7 @@ const Footer = () => {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <a
-              href="https://github.com/mdyusuf0/Roxiler-Assessment"
+              href="https://github.com/lifeofthecoders/Roxiler-Assessment"
               target="_blank"
               rel="noreferrer"
               style={{ color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}

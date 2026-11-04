@@ -33,7 +33,7 @@ coverage/
 # Docker volumes
 pgdata/
 
-# Ignore all .env files except for .env.example
+# Environment variables
 .env
 .env.*
 !.env.example
