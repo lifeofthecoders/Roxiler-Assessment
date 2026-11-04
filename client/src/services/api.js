@@ -1,14 +1,19 @@
 
 import axios from 'axios';
 
+
+
 const getBaseURL = () => {
   const rawUrl =
-    import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    import.meta.env.VITE_API_URL ||
+    'https://roxiler-store-rating-backend.vercel.app/api';
 
   const cleanUrl = rawUrl.trim().replace(/\/+$/, '');
 
   return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
 };
+
+
 
 const api = axios.create({
   baseURL: getBaseURL(),
