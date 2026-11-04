@@ -16,6 +16,7 @@ const app = express();
 
 // ── Security ────────────────────────────────────
 app.use(helmet());
+
 const allowedOrigins = [
   env.clientUrl,
   'http://localhost:5173',
@@ -25,19 +26,16 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (
-        allowedOrigins.includes(origin) ||
-        /\.vercel\.app$/.test(origin) ||
-        env.nodeEnv !== 'production'
-      ) {
+      if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
-      return callback(null, true);
+
+      return callback(new Error('Not allowed by CORS'));
     },
     credentials: true,
   })
 );
+
 
 // ── Body parsing ────────────────────────────────
 app.use(express.json({ limit: '1mb' }));
