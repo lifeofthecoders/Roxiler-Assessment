@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -60,6 +61,24 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/user', userRoutes);
 app.use('/store-owner', storeOwnerRoutes);
+
+// ── API Homepage ────────────────────────────────
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to StoreRate API',
+    description: 'Store Rating Management System - REST API',
+    status: 'Operational',
+    developer: 'Sumit Panchal',
+    endpoints: {
+      health: '/api/health',
+      authentication: '/api/auth',
+      admin: '/api/admin',
+      user: '/api/user',
+      storeOwner: '/api/store-owner',
+    },
+  });
+});
 
 // ── 404 catch-all ───────────────────────────────
 app.use((req, res) => {

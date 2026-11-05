@@ -1,288 +1,475 @@
-# 🏪 StoreRate - Full Stack Store Rating Web Application
+# 🏪 StoreRate — Store Rating Management System
 
-> Built for the **Roxiler Systems Full Stack Developer Intern (FSDI) Assessment**.
+A full-stack web application for managing stores, users, and customer ratings. The platform provides dedicated dashboards for administrators, normal users, and store owners, with secure authentication and a centralized rating management workflow.
 
----
-
-## 🚀 Live Production Links (Instant Demo)
-
-### 🌐 **Live Web Application (Frontend on Vercel):**
-# 👉 [https://roxiler-assessment-black.vercel.app/](https://roxiler-assessment-black.vercel.app/)
-
-### ⚡ **Live Production API (Backend on Render):**
-# 👉 [https://storerating-backend-368f.onrender.com](https://storerating-backend-368f.onrender.com)
-*System Health Check:* [`https://storerating-backend-368f.onrender.com/api/health`](https://storerating-backend-368f.onrender.com/api/health)
+**Project implementation, customization, and deployment maintained by Sumit Panchal.**
 
 ---
 
-### 🔑 Instant Demo Reviewer Accounts:
-| Role | Email | Password |
-|---|---|---|
-| 👑 **System Administrator** | `admin@storerating.com` | `Admin@123` |
-| 🏬 **Store Owner** | `owner@store1.com` | `Owner@123` |
-| 👤 **Normal User** | `user@example.com` | `User@1234` |
+## 🚀 Live Production Links
 
-*(Note: The login page includes 1-click quick-fill buttons to test any role instantly)*
+### 🌐 Live Web Application (Frontend)
 
----
+👉 https://lifeofthecoders.github.io/Roxiler-Assessment/
 
-A full-stack web application where users submit ratings (1 to 5) for registered stores, featuring a single unified authentication system with role-based access control, light frosted glassmorphism & neumorphism, interactive empathy cartoon mascots with physics cursor tracking, and a 60fps canvas cursor particle effect.
+### ⚡ Production Backend (REST API)
 
----
+👉 https://roxiler-store-rating-backend.vercel.app
 
-## 🌟 Features Overview
+**Backend Health Check:**
 
-### 1. 👥 Unified Role-Based System
-- **System Administrator**:
-  - Interactive dashboard with real-time aggregate metrics: **Total Users**, **Total Stores**, **Total Ratings**.
-  - **User Management**: Sortable & filterable table of all normal users, admin users, and store owners. Filters by search query (Name, Email, Address) and Role.
-  - **User Details View**: Inspect full profile; if the user is a Store Owner, dynamically displays their **Store Name** and **Store Rating**.
-  - **Add Users**: Form validation for creating new System Admins, Normal Users, or Store Owners.
-  - **Store Directory**: Sortable & filterable list of all stores with average ratings and rater counts. Register new stores and assign Store Owners.
-- **Normal User**:
-  - Register with strict validation rules and instant auto-login.
-  - Browse registered stores with instant search by **Name** and **Address**.
-  - Sort stores by Name (A–Z, Z–A) and Rating (Highest/Lowest).
-  - Store cards showing **Overall Rating**, **User's Submitted Rating**, and a **Submit / Modify Rating** widget.
-  - Upsert ratings (1 to 5 stars) with interactive star hover preview.
-- **Store Owner**:
-  - Overview card showing their owned store, overall average star rating badge, and total customer review count.
-  - Dedicated raters table displaying customer name, email, rating stars, and submission date with column sorting (asc/desc) and pagination.
-- **All Users**:
-  - Update password modal from the navigation header with password complexity enforcement.
-  - Secure JWT authentication with httpOnly refresh token cookie and bearer access token in memory.
+👉 https://roxiler-store-rating-backend.vercel.app/api/health
 
-### 2. 🎨 Empathizing Users with Design
-- **Interactive Doodle Mascots**:
-  - SVG mascots inspired by the design mockup reacting in real-time to user focus:
-    - **Idle**: Gentle breathing and random natural blinking.
-    - **Typing**: Eyes follow input text length and cursor caret position.
-    - **Password Focus**: Mascots cover their eyes with cute hands, wings, and paws so they don't peek.
-    - **Show Password**: Mascots peek through their fingers!
-    - **Success**: Joy celebration jump with bounce physics.
-    - **Error / Bad Credentials**: Mascots shake horizontally with concerned frowns.
-- **Glassmorphic Aesthetic**: Translucent frosted cards (`backdrop-filter: blur`), glowing gradient radial blobs, accessible contrast, and Framer Motion micro-interactions.
-- **Global Cursor Particles**: Smooth glowing canvas particle trail that drifts, fades, and bursts upon click (auto-disabled for touch devices and `prefers-reduced-motion`).
+### 💻 Source Code
+
+👉 https://github.com/lifeofthecoders/Roxiler-Assessment
 
 ---
 
-## 🛠️ Tech Stack
+## 📌 Project Overview
 
-| Layer | Technology |
+StoreRate is a role-based Store Rating Management System that allows users to discover registered stores, submit ratings, and manage store information through dedicated dashboards.
+
+The application provides three primary roles:
+
+- **System Administrator:** Manage users, stores, and platform information.
+- **Normal User:** Browse stores, search listings, and submit or update ratings.
+- **Store Owner:** Monitor store ratings and review customer submissions.
+
+The application uses a centralized authentication system and a PostgreSQL relational database.
+
+---
+
+## ✨ Key Features
+
+### 1. System Administrator
+
+- Dashboard with total users, stores, and ratings.
+- Create and manage users with assigned roles.
+- Search and filter users by name, email, address, and role.
+- View individual user details.
+- Register stores and assign store owners.
+- Search, sort, and paginate store listings.
+- View average store ratings and rating counts.
+
+### 2. Normal User
+
+- User registration and secure login.
+- Browse registered stores.
+- Search stores by name and address.
+- Sort stores alphabetically and by rating.
+- Submit ratings from 1 to 5 stars.
+- Update previously submitted ratings.
+- View overall store ratings and personal submitted ratings.
+
+### 3. Store Owner
+
+- Dedicated store owner dashboard.
+- View average store rating.
+- View total customer ratings.
+- Access customer rating details.
+- Sort and paginate rating records.
+
+### 4. Authentication and Security
+
+- Role-based access control.
+- JWT-based authentication.
+- Access and refresh token handling.
+- Password hashing using bcryptjs.
+- Protected API routes.
+- Password change functionality.
+- Frontend and backend input validation.
+
+### 5. User Interface
+
+- Responsive application interface.
+- Interactive rating components.
+- Framer Motion animations.
+- Glassmorphism-inspired styling.
+- Interactive SVG mascot elements.
+- Cursor particle effects with reduced-motion considerations.
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
 |---|---|
-| **Backend** | Express.js, Node.js |
-| **Database** | PostgreSQL, `pg` connection pool |
-| **Validation** | Zod (shared schema validation) |
-| **Authentication** | JWT (access + refresh tokens), bcryptjs |
-| **Frontend** | React 19, Vite, React Router v7, Redux Toolkit |
-| **Styling & Motion** | CSS Modules, Glassmorphism, Framer Motion, HTML5 Canvas |
-| **Icons & Alerts** | React Icons (`react-icons/fi`), React Hot Toast |
-| **Testing & CI** | Jest, Supertest, GitHub Actions |
-| **DevOps** | Docker Compose |
+| Frontend | React 19, Vite |
+| Routing | React Router |
+| State Management | Redux Toolkit |
+| Backend | Node.js, Express.js |
+| Database | PostgreSQL |
+| Database Driver | pg |
+| Authentication | JWT, bcryptjs |
+| Validation | Zod |
+| UI and Animation | CSS Modules, Framer Motion |
+| Notifications | React Hot Toast |
+| Icons | React Icons |
+| Testing | Jest, Supertest |
+| CI/CD | GitHub Actions |
+| Frontend Hosting | GitHub Pages |
+| Backend Hosting | Vercel |
+| Database Hosting | Neon |
 
 ---
 
-## 📐 Database Schema
+## 🧩 Application Architecture
 
-```
-┌─────────────────────────────────────────┐       ┌─────────────────────────────────────────┐
-│                 users                   │       │                 stores                  │
-├─────────────────────────────────────────┤       ├─────────────────────────────────────────┤
-│ id          SERIAL PRIMARY KEY          │       │ id          SERIAL PRIMARY KEY          │
-│ name        VARCHAR(60) NOT NULL        │       │ name        VARCHAR(60) NOT NULL        │
-│ email       VARCHAR(255) UNIQUE NOT NULL│       │ email       VARCHAR(255) UNIQUE NOT NULL│
-│ password    VARCHAR(255) NOT NULL       │       │ address     VARCHAR(400) NOT NULL       │
-│ address     VARCHAR(400) NOT NULL       │       │ owner_id    INT REFERENCES users(id)    │
-│ role        user_role ENUM NOT NULL     │       │ created_at  TIMESTAMPTZ DEFAULT NOW()   │
-│ created_at  TIMESTAMPTZ DEFAULT NOW()   │       └────────────────────┬────────────────────┘
-└────────────────────┬────────────────────┘                            │
-                     │                                                 │
-                     │         ┌───────────────────────────────────────┘
-                     │         │
-                     ▼         ▼
-┌─────────────────────────────────────────┐
-│                ratings                  │
-├─────────────────────────────────────────┤
-│ id          SERIAL PRIMARY KEY          │
-│ user_id     INT REFERENCES users(id)    │
-│ store_id    INT REFERENCES stores(id)   │
-│ rating      INT CHECK (rating 1-5)      │
-│ created_at  TIMESTAMPTZ DEFAULT NOW()   │
-│ updated_at  TIMESTAMPTZ DEFAULT NOW()   │
-│ UNIQUE (user_id, store_id)              │
-└─────────────────────────────────────────┘
+The application follows a client-server architecture, with the React frontend communicating with the Express REST API and PostgreSQL database.
 
-Enum user_role = 'admin' | 'user' | 'store_owner'
-Indexes created on: users(name, email, role), stores(name, email), ratings(user_id, store_id)
+### Project Structure
+
+```text
+Roxiler-Assessment/
+│
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── store/
+│   │   └── ...
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/
+│   ├── config/
+│   │   ├── db.js
+│   │   ├── env.js
+│   │   ├── schema.sql
+│   │   ├── migrate.js
+│   │   └── seed.js
+│   ├── controllers/
+│   ├── middleware/
+│   ├── routes/
+│   ├── services/
+│   ├── tests/
+│   ├── index.js
+│   └── package.json
+│
+├── .github/
+│   └── workflows/
+│
+├── .env.example
+├── render.yaml
+└── README.md
 ```
 
 ---
 
-## 🔒 Form Validation Rules (Frontend & Backend)
+## 🗄️ Database Structure
 
-| Field | Rule |
+The application uses PostgreSQL with three primary tables.
+
+### Users
+
+- id
+- name
+- email
+- password
+- address
+- role
+- created_at
+
+### Stores
+
+- id
+- name
+- email
+- address
+- owner_id
+- created_at
+
+### Ratings
+
+- id
+- user_id
+- store_id
+- rating
+- created_at
+- updated_at
+
+**User Roles:**
+
+- admin
+- user
+- store_owner
+
+Each user can submit one rating per store and subsequently update that rating.
+
+---
+
+## 📋 Form Validation Rules
+
+| Field | Validation |
 |---|---|
-| **Name** | Min 20 characters, Max 60 characters |
-| **Address** | Max 400 characters |
-| **Password** | 8 to 16 characters, at least 1 uppercase letter, at least 1 special character |
-| **Email** | Standard email validation (`^[^\s@]+@[^\s@]+\.[^\s@]+$`) |
-| **Rating** | Integer between 1 and 5 inclusive |
+| Name | 20–60 characters |
+| Address | Maximum 400 characters |
+| Password | 8–16 characters, uppercase letter and special character required |
+| Email | Valid email format |
+| Rating | Integer between 1 and 5 |
+
+Validation is implemented across the frontend and backend.
 
 ---
 
-## 🚀 Quick Start Guide
+## 💻 Local Development
 
 ### Prerequisites
-- Node.js (v18+)
-- PostgreSQL (Local instance running on port 5432)
 
----
+- Node.js 18 or later
+- npm
+- PostgreSQL database
 
-### Step 1: Clone & Configure Environment
+### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/mdyusuf0/Roxiler-Assessment.git
-cd Roxiler-Assessment
+git clone https://github.com/lifeofthecoders/Roxiler-Assessment.git
 
-# Configure your local .env with your PostgreSQL credentials
+cd Roxiler-Assessment
 ```
 
-### Step 2: Setup Server & Seed Database
+### 2. Configure the Backend
+
 ```bash
 cd server
+
 npm install
-
-# Run migration and seeds:
-npm run migrate
-npm run seed
-
-# Run automated test suite:
-npm test
-
-# Start backend development server:
-npm run dev
-# Server running at http://localhost:5000
 ```
 
-### Step 3: Start Frontend Client
-In a new terminal:
+Configure your local environment variables using the project's environment example. Never commit your actual `.env` file or database credentials.
+
+### 3. Initialize the Database
+
+```bash
+npm run migrate
+npm run seed
+```
+
+Run these database initialization commands only against a fresh development database because the migration and seed scripts can replace existing data.
+
+### 4. Start the Backend
+
+```bash
+npm run dev
+```
+
+Backend development URL:
+
+```text
+http://localhost:5000
+```
+
+### 5. Start the Frontend
+
+Open a separate terminal:
+
 ```bash
 cd client
+
 npm install
+
 npm run dev
-# Vite client running at http://localhost:5173
+```
+
+Frontend development URL:
+
+```text
+http://localhost:5173
 ```
 
 ---
 
-## 🔑 Pre-Seeded Test Accounts
+## 🔑 Demo Accounts
 
-| Role | Email | Password | Details |
-|---|---|---|---|
-| **System Admin** | `admin@storerating.com` | `Admin@123` | Full dashboard, user/store management |
-| **Store Owner 1** | `owner@store1.com` | `Owner@123` | Owns *TechMart Electronics Store* |
-| **Store Owner 2** | `owner@store2.com` | `Owner@123` | Owns *Fresh Grocers Supermarket* |
-| **Normal User 1** | `user@example.com` | `User@1234` | Has submitted sample ratings |
-| **Normal User 2** | `user2@example.com` | `User@1234` | Has submitted sample ratings |
+The application includes seeded demonstration accounts for testing its role-based functionality.
 
-*Tip: The Login page features one-click demo account buttons to test any role instantly.*
+| Role | Email | Password |
+|---|---|---|
+| Administrator | admin@storerating.com | Admin@123 |
+| Store Owner | owner@store1.com | Owner@123 |
+| Normal User | user@example.com | User@1234 |
+
+These are sample credentials for the seeded demonstration database.
 
 ---
 
 ## 📡 API Endpoints Reference
 
-### Public
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/health` | Health check & uptime |
-| `POST` | `/api/auth/signup` | Register new normal user |
-| `POST` | `/api/auth/login` | Unified login for all roles |
+### Authentication
 
-### Authenticated (All Roles)
-| Method | Endpoint | Description |
+| Method | Endpoint | Purpose |
 |---|---|---|
-| `PUT` | `/api/auth/change-password` | Update current user's password |
-| `POST` | `/api/auth/logout` | Clear refresh token cookie |
+| POST | `/api/auth/signup` | Register a user |
+| POST | `/api/auth/login` | Authenticate a user |
+| PUT | `/api/auth/change-password` | Change password |
+| POST | `/api/auth/logout` | Log out |
 
-### System Administrator (`admin`)
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/admin/dashboard` | Aggregate counts (users, stores, ratings) |
-| `GET` | `/api/admin/users` | List users with search, role filter, sort, pagination |
-| `POST` | `/api/admin/users` | Create user with assigned role |
-| `GET` | `/api/admin/users/:id` | User details (including store rating if owner) |
-| `GET` | `/api/admin/stores` | List stores with search, sort, pagination |
-| `POST` | `/api/admin/stores` | Register new store with optional owner assignment |
+### System Administrator
 
-### Normal User (`user`)
-| Method | Endpoint | Description |
+| Method | Endpoint | Purpose |
 |---|---|---|
-| `GET` | `/api/user/stores` | List stores with overall rating and user's submitted rating |
-| `PUT` | `/api/user/stores/:storeId/rating`| Submit or update store rating (1–5) |
+| GET | `/api/admin/dashboard` | Dashboard metrics |
+| GET | `/api/admin/users` | Retrieve users |
+| POST | `/api/admin/users` | Create users |
+| GET | `/api/admin/users/:id` | View user details |
+| GET | `/api/admin/stores` | Retrieve stores |
+| POST | `/api/admin/stores` | Register a store |
 
-### Store Owner (`store_owner`)
-| Method | Endpoint | Description |
+### Normal User
+
+| Method | Endpoint | Purpose |
 |---|---|---|
-| `GET` | `/api/store-owner/dashboard` | Store summary with average rating and review count |
-| `GET` | `/api/store-owner/ratings` | List of customers who rated the store with sort & pagination |
+| GET | `/api/user/stores` | Browse stores |
+| PUT | `/api/user/stores/:storeId/rating` | Submit or update a rating |
+
+### Store Owner
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/store-owner/dashboard` | Store performance overview |
+| GET | `/api/store-owner/ratings` | View customer ratings |
+
+### System Health
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/health` | Check backend service health |
 
 ---
 
 ## 🧪 Testing
 
-Run backend unit and integration tests using Jest and Supertest:
+Backend automated tests use Jest and Supertest.
+
+To execute the test suite:
+
 ```bash
 cd server
+
 npm test
 ```
 
 ---
 
-## 🌐 Cloud Deployment Guide
+## ☁️ Deployment Architecture
 
-The application is pre-configured for seamless 1-click cloud deployment:
+The application is deployed using the following services:
 
-### Backend Deployment (Render)
-1. **Create Render PostgreSQL Database**:
-   - Go to [Render Dashboard](https://dashboard.render.com/) -> **New** -> **PostgreSQL**.
-   - Name it `storerating-db`. Copy the **Internal Database URL** (or External Database URL if needed).
-2. **Deploy Express Web Service**:
-   - In Render, click **New** -> **Web Service** and link this repository (`Roxiler-Assessment`).
-   - Configure settings:
-     - **Root Directory**: `server`
-     - **Build Command**: `npm install`
-     - **Start Command**: `npm start`
-   - Add Environment Variables:
-     - `DATABASE_URL`: *(Your Render PostgreSQL connection string)*
-     - `JWT_SECRET`: *(A secure random string, e.g. `openssl rand -hex 32`)*
-     - `JWT_REFRESH_SECRET`: *(A secure random string)*
-     - `PORT`: `5000`
-     - `NODE_ENV`: `production`
-3. **Run Database Migrations & Seeds**:
-   - In the Render Web Service dashboard, go to the **Shell** tab and run:
-     ```bash
-     npm run migrate
-     npm run seed
-     ```
-   - Your backend will now be live at `https://<your-render-app>.onrender.com`.
+| Component | Deployment Platform |
+|---|---|
+| Frontend | GitHub Pages |
+| Backend REST API | Vercel |
+| PostgreSQL Database | Neon |
+| Source Code | GitHub |
+| Continuous Deployment | GitHub Actions |
 
----
+### Frontend Deployment
 
-### Frontend Deployment (Vercel)
-1. **Import Repository to Vercel**:
-   - Go to [Vercel Dashboard](https://vercel.com/) -> **Add New** -> **Project**.
-   - Import your `Roxiler-Assessment` GitHub repository.
-2. **Configure Project Settings**:
-   - **Framework Preset**: `Vite`
-   - **Root Directory**: Click *Edit* and select `client`.
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-3. **Environment Variables**:
-   - Add `VITE_API_URL`: `https://<your-render-app>.onrender.com/api`
-4. **Deploy**:
-   - Click **Deploy**. Vercel will bundle the React SPA. Single Page Application route rewrites are automatically handled by `client/vercel.json`.
+The React application is built using Vite and deployed to GitHub Pages through GitHub Actions.
+
+### Backend Deployment
+
+The Express.js application is deployed on Vercel with production environment variables.
+
+### Database Deployment
+
+The PostgreSQL database is hosted on Neon and accessed through the backend using a secure database connection.
+
+**Production Health Check:**
+
+https://roxiler-store-rating-backend.vercel.app/api/health
 
 ---
 
-## 📜 Detailed Build Log
+## 💼 Professional Focus
 
-For a detailed step-by-step log of design choices, architectural decisions, and concepts to revise, check [`docs/BUILD_LOG.md`](./docs/BUILD_LOG.md).
+I'm interested in opportunities where I can contribute to building products that are:
+
+**Reliable • Usable • Consistent • Stable • Scalable • User-Friendly**
+
+I bring a QA mindset that focuses not only on whether a feature works, but also on **how the complete product behaves in the hands of a real user**.
+
+My approach combines structured testing with real-world user behavior, helping identify defects, usability issues, edge cases, and potential risks before they reach the end user.
+
+---
+
+## 👨‍💻 About the Developer
+
+**Sumit Panchal**
+
+Quality Analyst | Manual QA | Software Testing | Quality Mindset
+
+I focus on software quality, functional testing, test case design, defect reporting, and delivering reliable user experiences.
+
+**Professional Experience:** 5+ Years in Manual QA and Software Testing.
+
+---
+
+## 📄 License
+
+This repository contains a project implementation maintained and customized by Sumit Panchal.
+
+Project-specific code, custom modifications, documentation, and other original materials should be used in accordance with their applicable ownership and licensing terms.
+
+Third-party libraries, dependencies, fonts, assets, and other externally licensed materials remain subject to their respective licenses and usage terms.
+
+Unauthorized copying, redistribution, modification, or commercial use of materials for which permission is required is not permitted.
+
+---
+
+## 📫 Connect With Me
+
+If you'd like to connect, collaborate, or discuss QA, software testing, and technology, feel free to reach out.
+
+**Sumit Panchal**
+
+**Quality Analyst | Manual QA | Software Testing**
+
+🌐 **Portfolio:**
+
+https://lifeofthecoders.github.io/Sumit-Panchal-QA-Portfolio/
+
+💻 **GitHub:**
+
+https://github.com/lifeofthecoders
+
+🔗 **LinkedIn:**
+
+https://www.linkedin.com/in/sumit-panchal-b790a8236/
+
+📧 **Email:**
+
+sumitpanchal5225@gmail.com
+
+---
+
+---
+
+## ⭐ Support
+
+<p align="center">
+If you find this project useful, feel free to explore the application and give the repository a star ⭐.
+</p>
+
+<p align="center">
+Your support and feedback are always appreciated.
+</p>
+
+<p align="center">
+<strong>QUALITY IS MY CRAFT.<br>
+RELIABILITY IS MY GOAL.</strong>
+</p>
+
+<p align="center">
+<strong>HAPPY TESTING 😀</strong>
+</p>
+
+---
+
+
+*Maintained and deployed by Sumit Panchal.*
