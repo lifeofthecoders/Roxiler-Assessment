@@ -105,16 +105,33 @@ const Login = () => {
       toast.success(`Welcome back, ${user.name}!`);
 
       setTimeout(() => {
-        const from = location.state?.from?.pathname;
-        if (from) {
-          navigate(from, { replace: true });
-        } else if (user.role === 'admin') {
-          navigate('/admin', { replace: true });
-        } else if (user.role === 'store_owner') {
-          navigate('/owner', { replace: true });
-        } else {
-          navigate('/user', { replace: true });
-        }
+        // Define the correct dashboard for each authenticated role.
+        const roleDashboard = {
+          admin: '/admin',
+          store_owner: '/owner',
+          user: '/user',
+        };
+
+        const dashboardPath = roleDashboard[user.role];
+
+        // Read the previously requested protected route.
+        const requestedPath = location.state?.from?.pathname;
+
+        // Check whether the requested destination belongs
+        // to the authenticated user's role.
+        const isRequestedPathAllowed =
+          typeof requestedPath === 'string' &&
+          dashboardPath &&
+          (
+            requestedPath === dashboardPath ||
+            requestedPath.startsWith(`${dashboardPath}/`)
+          );
+
+        // Never send users to another role's dashboard.
+        navigate(
+          isRequestedPathAllowed ? requestedPath : dashboardPath || '/login',
+          { replace: true }
+        );
       }, 900);
     } catch (err) {
       setMood('error');
